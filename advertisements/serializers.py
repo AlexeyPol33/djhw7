@@ -39,9 +39,10 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
-        is_POST_request = self.context['request']._stream.method == 'POST'
+        is_POST_request = self.context['request'].method == 'POST'
+        print(data['status'])
         number_of_publications_no_more_than_10 = len(Advertisement.objects.filter(creator=self.context["request"].user,status="OPEN")) >= 10
-        if is_POST_request and number_of_publications_no_more_than_10:
+        if (is_POST_request or data['status']) and number_of_publications_no_more_than_10:
             raise serializers.ValidationError('Достигнут максимальный лимит объявлений')
         # TODO: добавьте требуемую валидацию
 

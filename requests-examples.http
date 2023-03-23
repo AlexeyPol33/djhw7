@@ -5,7 +5,10 @@
 # получение объявлений
 GET {{baseUrl}}/advertisements/
 Content-Type: application/json
-
+###
+#Поиск по статусу
+GET {{baseUrl}}/advertisements/?status=OPEN
+Content-Type: application/json
 ###
 
 # создание объявления
@@ -21,18 +24,18 @@ Authorization: Token 1ae137d164403e99bb9c3243f7ed60cb6333ffc3
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/28/
+PATCH {{baseUrl}}/advertisements/24/
 Content-Type: application/json
 Authorization: Token ffa0dcf5d3d88123c2ec2ef45fb892e661a8fc06
 
 {
-  "status": "CLOSED"
+  "status": "OPEN"
 }
 
 ###
 
 # фильтрация по создателю
-GET {{baseUrl}}/advertisements/?creator=1
+GET {{baseUrl}}/advertisements/?creator=2
 Content-Type: application/json
 
 ###
